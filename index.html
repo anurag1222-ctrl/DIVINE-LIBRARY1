@@ -1,208 +1,795 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIVINE Study Space | Arrah</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #4361ee;
-      --secondary: #3f37c9;
-      --light: #ffffff;
-      --dark: #1e1e2f;
-      --gray: #f1f1f1;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIVINE | Premium Study Space in Arrah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+    --primary: #4361ee;
+    --secondary: #3f37c9;
+    --accent: #4895ef;
+    --dark: #2b2d42;
+    --light: #f8f9fa;
+    --success: #4cc9f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+    color: var(--dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+.logo {
+    width: 180px;
+    height: 60px;
+    background: #e0e7ff;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--primary);
+    border: 2px dashed var(--accent);
+    animation: floatLogo 6s ease-in-out infinite;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    position: relative;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover:after {
+    width: 100%;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+}
+
+.btn:hover {
+    background: var(--secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 600px;
+    z-index: 2;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+.hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--dark);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #4a5568;
+}
+
+.hero-img-placeholder {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px dashed var(--accent);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    animation: float 8s ease-in-out infinite;
+}
+
+.features {
+    padding: 100px 5%;
+    background: white;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    perspective: 1000px;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) rotateY(5deg);
+    box-shadow: 0 15px 40px rgba(67, 97, 238, 0.15);
+}
+
+.feature-icon {
+    height: 200px;
+    background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    color: white;
+}
+
+.feature-content {
+    padding: 30px;
+}
+
+.feature-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--dark);
+}
+
+.pricing {
+    padding: 100px 5%;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+}
+
+.pricing-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: white;
+    border-radius: 25px;
+    padding: 40px 30px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-card.popular {
+    transform: scale(1.05);
+    z-index: 2;
+    box-shadow: 0 20px 40px rgba(67, 97, 238, 0.25);
+    border: 2px solid var(--primary);
+}
+
+.price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 20px 0;
+}
+
+.price span {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.pricing-features {
+    list-style: none;
+    margin: 30px 0;
+    text-align: left;
+    padding-left: 0;
+}
+
+.pricing-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+.pricing-features li i {
+    color: var(--success);
+    margin-right: 10px;
+}
+
+.booking {
+    padding: 100px 5%;
+    background: white;
+}
+
+.booking-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: center;
+}
+
+.booking-form {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group label.required:after {
+    content: ' *';
+    color: red;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.booking-image {
+    flex: 1;
+    min-width: 300px;
+    height: 450px;
+    background: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px dashed var(--accent);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes floatLogo {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    .hero-img-placeholder {
+        position: relative;
+        margin: 50px auto 0;
+        width: 100%;
+        max-width: 400px;
+        height: 400px;
     }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--gray);
-      color: var(--dark);
-      line-height: 1.6;
+    .hero-content {
+        margin: 0 auto;
+        padding-top: 100px;
     }
 
-    header {
-      background: var(--light);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    .booking-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
     }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--primary);
+    .section-title {
+        font-size: 2rem;
     }
 
     nav ul {
-      display: flex;
-      list-style: none;
-      gap: 1rem;
+        display: none;
     }
 
-    nav a {
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
+    .location-container {
+        grid-template-columns: 1fr;
     }
 
-    .hero {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: linear-gradient(135deg, #c7d2fe, #edf2ff);
+    .map-container {
+        height: 350px;
     }
+}
 
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-
-    .btn {
-      background: var(--primary);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .booking {
-      background: var(--light);
-      padding: 2rem;
-      max-width: 600px;
-      margin: 2rem auto;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    .booking h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    footer {
-      background: var(--dark);
-      color: white;
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-    }
-  </style>
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo">DIVINE</div>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#booking">Book</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Header -->
+    <header>
+        <div class="logo">DIVINE</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#features">Amenities</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#booking">Book Now</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="#booking" class="btn">Book a Visit</a>
+    </header>
 
-  <section class="hero">
-    <h1>Welcome to DIVINE Study Space</h1>
-    <p>Premium study environment in Arrah with silent zones, WiFi, AC & more.</p>
-    <a href="#booking" class="btn">Book a Slot</a>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Focus. Excel. Succeed.</h1>
+            <p>DIVINE Study Space provides the perfect environment for students and professionals in Arrah to achieve their goals. Experience distraction-free studying with premium amenities.</p>
+            <a href="#features" class="btn">Explore Amenities</a>
+        </div>
+        <div class="hero-img-placeholder">
+            <img src="bestimage4.avif" alt="">
+            <!-- <p>Your Study Space Image Will Appear Here</p> -->
+        </div>
+    </section>
 
-  <section class="booking" id="booking">
-    <h2>Book Your Visit</h2>
-    <form id="bookingForm">
-      <div class="form-group">
-        <label for="name">Full Name *</label>
-        <input type="text" id="name" required>
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone Number *</label>
-        <input type="tel" id="phone" required>
-      </div>
-      <div class="form-group">
-        <label for="plan">Choose Plan *</label>
-        <select id="plan" required>
-          <option value="">Select</option>
-          <option value="hourly">Hourly (₹50)</option>
-          <option value="daily">Daily (₹100)</option>
-          <option value="monthly">Monthly (₹800)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="date">Date *</label>
-        <input type="date" id="date" required>
-      </div>
-      <button type="submit" class="btn">Send on WhatsApp</button>
-    </form>
-  </section>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Our Premium Amenities</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>High-Speed Internet</h3>
+                    <p>Blazing fast fiber-optic internet for uninterrupted research and online learning.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Air-Conditioned Spaces</h3>
+                    <p>Stay comfortable and focused with our climate-controlled study areas.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chair"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Ergonomic Furniture</h3>
+                    <p>Premium ergonomic chairs and desks designed for long study sessions.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-coffee"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Complimentary Refreshments</h3>
+                    <p>Free coffee, tea, and water to keep you energized throughout your study time.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Secure Lockers</h3>
+                    <p>Personal lockers to safely store your belongings while you focus on studying.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Silent Zones</h3>
+                    <p>Designated silent areas for maximum concentration and focus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    &copy; 2025 DIVINE Study Space. Arrah, Bihar.
-  </footer>
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <h2 class="section-title">Flexible Pricing Plans</h2>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3>Hourly Pass</h3>
+                <div class="price">₹50<span>/hour</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Flexible timing</li>
+                    <li><i class="fas fa-check"></i> High-speed Wi-Fi</li>
+                    <li><i class="fas fa-check"></i> AC Environment</li>
+                    <li><i class="fas fa-check"></i> Charging ports</li>
+                    <li><i class="fas fa-times"></i> NO Locker access</li>
+                </ul>
+                <a href="#booking" class="btn">Book Now</a>
+            </div>
+            <div class="pricing-card popular">
+                <h3>Day Pass</h3>
+                <div class="price">₹100<span>/day</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> 8 hours access</li>
+                    <li><i class="fas fa-check"></i> High-speed Wi-Fi</li>
+                    <li><i class="fas fa-check"></i> AC Environment</li>
+                    <li><i class="fas fa-check"></i> Charging ports</li>
+                    <li><i class="fas fa-check"></i> NO Locker access</li>
+                    <li><i class="fas fa-check"></i> Free refreshments</li>
+                </ul>
+                <a href="#booking" class="btn">Book Now</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Monthly Pass</h3>
+                <div class="price">₹800<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Unlimited access</li>
+                    <li><i class="fas fa-check"></i> High-speed Wi-Fi</li>
+                    <li><i class="fas fa-check"></i> AC Environment</li>
+                    <li><i class="fas fa-check"></i> Dedicated locker</li>
+                    <li><i class="fas fa-check"></i> Free refreshments</li>
+                    <li><i class="fas fa-check"></i> Priority booking</li>
+                </ul>
+                <a href="#booking" class="btn">Book Now</a>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    document.getElementById("bookingForm").addEventListener("submit", function (e) {
-      e.preventDefault();
+    <!-- Booking Section -->
+    <section class="booking" id="booking">
+        <h2 class="section-title">Reserve Your Study Space</h2>
+        <div class="booking-container">
+            <div class="booking-form">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="name" class="required">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="plan" class="required">Select Plan</label>
+                        <select id="plan" required>
+                            <option value="">Select a plan</option>
+                            <option value="hourly">Hourly Pass (₹50/hour)</option>
+                            <option value="daily">Day Pass (₹100/day)</option>
+                            <option value="monthly">Monthly Pass (₹800/month)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date" class="required">Preferred Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <button type="submit" class="btn" style="width:100%">Book Now</button>
+                </form>
+            </div>
+            <div class="booking-image">
+                <img src="bestimage5.avif" alt="">
+                <!-- <p>Environment Image Will Appear Here</p> -->
+            </div>
+        </div>
+    </section>
 
-      const name = document.getElementById("name").value;
-      const phone = document.getElementById("phone").value;
-      const plan = document.getElementById("plan").value;
-      const date = document.getElementById("date").value;
+    <!-- Location Section -->
+    <section class="location" id="location">
+        <h2 class="section-title">Find Our Study Space</h2>
+        <div class="location-container">
+            <div class="location-info">
+                <h3>Visit DIVINE in Arrah</h3>
+                <p>We're conveniently located in the heart of Arrah, making it easy for students and professionals to access our premium study facilities.</p>
+                
+                <div class="address-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Our Location</h4>
+                    <p>pakri gas agency road,near satiwada more</p>
+                    <p>Arrah, Bihar 802301</p>
+                    <p>India</p>
+                </div>
+                
+                <div class="address-card">
+                    <i class="fas fa-clock"></i>
+                    <h4>Opening Hours</h4>
+                    <p>Monday - Friday: 6:00 AM - 10:00 PM</p>
+                    <p>Saturday: 7:00 AM - 10:00 PM</p>
+                    <p>Sunday: 7:00 AM - 10:00 PM</p>
+                </div>
+                
+                <div class="address-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>Contact Information</h4>
+                    <p>Phone: +91 9262218521</p>
+                    <p>Email: singhakash9262@gmail.com</p>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <!-- Replace with your actual Google Maps embed code -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d426.329275749017!2d84.65258603841545!3d25.55938120529947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1751789641907!5m2!1sen!2sin" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" 
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
 
-      const planText = {
-        hourly: "Hourly (₹50/hour)",
-        daily: "Daily (₹100/day)",
-        monthly: "Monthly (₹800/month)"
-      }[plan];
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>DIVINE Study Space</h3>
+                <p>Your premier destination for focused studying in Arrah. We provide the perfect environment for academic and professional success.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#features">Amenities</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#booking">Book Now</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Opening Hours</h3>
+                <ul>
+                    <li>Monday - Friday: 6:00 AM - 10:00 PM</li>
+                    <li>Saturday: 7:00 AM - 10:00 PM</li>
+                    <li>Sunday: 7:00 AM - 10:00 PM</li>
+                    <li>24/7 access for monthly members</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Main Road, Arrah, Bihar</li>
+                    <li><i class="fas fa-phone"></i> +91 9262218521</li>
+                    <li><i class="fas fa-envelope"></i> singhakash9262@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 DIVINE Study Space. All rights reserved.</p>
+        </div>
+    </footer>
 
-      const message = `*Booking Request*\n\nName: ${name}\nPhone: ${phone}\nPlan: ${planText}\nDate: ${date}`;
-
-      const whatsappURL = `https://wa.me/919262218521?text=${encodeURIComponent(message)}`;
-      window.open(whatsappURL, "_blank");
-      alert("Thank you! Redirecting to WhatsApp...");
-    });
-  </script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '15px 5%';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '20px 5%';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+        
+        const hiddenElements = document.querySelectorAll('.feature-card, .pricing-card, .address-card');
+        hiddenElements.forEach((el) => observer.observe(el));
+        
+        // WhatsApp Booking Function
+        function sendWhatsAppBooking(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const plan = document.getElementById('plan').value;
+            const date = document.getElementById('date').value;
+            
+            // Validate form
+            if (!name || !phone || !plan || !date) {
+                alert('Please fill all required fields');
+                return;
+            }
+            
+            // Format plan names for display
+            const planNames = {
+                'hourly': 'Hourly Pass (₹50/hour)',
+                'daily': 'Day Pass (₹100/day)',
+                'monthly': 'Monthly Pass (₹800/month)'
+            };
+            
+            // Create WhatsApp message
+            const message = `New Booking Request:%0A%0A` +
+                            `*Name:* ${name}%0A` +
+                            `*Email:* ${email || 'Not provided'}%0A` +
+                            `*Phone:* ${phone}%0A` +
+                            `*Plan:* ${planNames[plan]}%0A` +
+                            `*Date:* ${date}%0A%0A` +
+                            `_Sent from DIVINE Study Space Website_`;
+            
+            // Replace with your WhatsApp number (with country code, remove +)
+            const whatsappNumber = '919262218521'; // Example: 91 for India, followed by number
+            
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+            
+            // Optional: Reset form after submission
+            event.target.reset();
+            
+            // Optional: Show confirmation
+            alert('Thank you! You will be redirected to WhatsApp to complete your booking.');
+        }
+        
+        // Attach event listener to form
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingForm = document.getElementById('bookingForm');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', sendWhatsAppBooking);
+            }
+        });
+    </script>
 </body>
 </html>
 
